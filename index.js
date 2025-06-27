@@ -1,6 +1,6 @@
 import TelegramBot from "node-telegram-bot-api";
 import dotenv from "dotenv";
-import { app } from "./firebase.js";
+import { database } from "./firebase.js"; // Импортируем базу данных
 
 dotenv.config();
 
@@ -19,12 +19,19 @@ bot.onText(/\/start/, (msg) => {
   welcomeMsg += `Мы сейчас соберём информацию о тебе...`;
 
   bot.sendMessage(chatId, welcomeMsg).then(() => {
-    // Пример: сохранить или вывести данные
-    console.log("👤 Пользователь:", {
+    // Сохраняем данные пользователя в Firebase
+    set(ref(database, "users/" + userId), {
       userId,
-      name: `${firstName} ${lastName}`,
+      firstName,
+      lastName,
       username,
-    });
+    })
+      .then(() => {
+        console.log("Данные успешно сохранены в Firebase!");
+      })
+      .catch((error) => {
+        console.error("Ошибка при сохранении данных:", error);
+      });
 
     bot.sendMessage(
       chatId,

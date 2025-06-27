@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getDatabase, ref, set } from "firebase/database"; // Импортируем необходимые модули для работы с Realtime Database
 import { getAnalytics, isSupported } from "firebase/analytics";
 
 const firebaseConfig = {
@@ -23,4 +24,7 @@ if (typeof window !== "undefined" && isSupported()) {
   console.log("Firebase Analytics не поддерживается в данной среде (Node.js)");
 }
 
-export { app, analytics };
+// Инициализация Realtime Database
+const database = getDatabase(app);
+
+export { app, analytics, database };

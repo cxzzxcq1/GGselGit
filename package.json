@@ -8,8 +8,8 @@
     "deploy": "railway up"
   },
   "dependencies": {
-    "dotenv": "^16.4.5",
-    "firebase": "^9.0.0",
+    "dotenv": "^16.6.0",
+    "firebase": "^9.23.0",
     "node-telegram-bot-api": "^0.61.0"
   }
 }

@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database"; // Импортируем необходимые модули для работы с Realtime Database
-import { getAnalytics, isSupported } from "firebase/analytics";
+import { getDatabase, ref, set } from "firebase/database"; // Импортируем необходимые функции для работы с Realtime Database
+import { getAnalytics, isSupported } from "firebase/analytics"; // Аналитика, если она нужна
 
 const firebaseConfig = {
   apiKey: "AIzaSyCH9CeUn88EELoBpGpdKITMYXKA8GAVa7U",

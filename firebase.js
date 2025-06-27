@@ -1,6 +1,5 @@
-// firebase.js
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, isSupported } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCH9CeUn88EELoBpGpdKITMYXKA8GAVa7U",
@@ -12,7 +11,16 @@ const firebaseConfig = {
   measurementId: "G-N1Q2PG0K2D",
 };
 
+// Инициализация Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+// Инициализация Analytics только в браузере
+let analytics;
+
+if (typeof window !== "undefined" && isSupported()) {
+  analytics = getAnalytics(app);
+} else {
+  console.log("Firebase Analytics не поддерживается в данной среде (Node.js)");
+}
 
 export { app, analytics };
